@@ -14,6 +14,7 @@ repos:
     rev: 6.1.0
     hooks:
       - id: flake8
+        args: [--config=config/.flake8]
   - repo: https://github.com/PyCQA/pylint
     rev: v3.0.2
     hooks:

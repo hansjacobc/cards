@@ -1,18 +1,38 @@
-from src.card_enums import Card
+import random
+
+from src.card_enums import Card, Ranks, Suits
 
 
 class DeckOfCards:
     """Class to create a deck of cards"""
 
-    def __init__(self, num_decks: int = 1, include_jokers: bool = False):
-        self.num_decks = num_decks
-        self.include_jokers = include_jokers
+    deck: list[Card]
+
+    def __init__(self):
         self.deck = []
 
-    def create_deck(self) -> list[Card]:
-        a = self.deck
-        print(a)
-        return []
+    def create_deck(
+        self, shuffled: bool = False, num_decks: int = 1, include_jokers: bool = False
+    ) -> None:
+        for _ in range(num_decks):
+            for suit in Suits:
+                if suit == Suits.JOKER:
+                    continue
 
-    def another_func(self):
-        pass
+                for rank in Ranks:
+                    if rank == Ranks.JOKER:
+                        continue
+
+                    card = Card(suit=suit, rank=rank)
+                    self.deck.append(card)
+
+        if include_jokers:
+            card = Card(suit=Suits.JOKER, rank=Ranks.JOKER)
+            self.deck.append(card)
+            self.deck.append(card)
+
+        if shuffled:
+            self.shuffle_deck()
+
+    def shuffle_deck(self) -> None:
+        random.shuffle(self.deck)

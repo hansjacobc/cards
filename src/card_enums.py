@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Suit(Enum):
+class Suits(Enum):
     """Enum for card suits"""
 
     CLUBS = "CLUBS"
@@ -11,7 +11,7 @@ class Suit(Enum):
     JOKER = "JOKER"
 
 
-class Rank(Enum):
+class Ranks(Enum):
     """Enum for card ranks"""
 
     ACE = "ACE"
@@ -33,7 +33,7 @@ class Rank(Enum):
 class Card:
     """Class to encapsulate card suits and ranks."""
 
-    def __init__(self, suit: Suit, rank: Rank):
+    def __init__(self, suit: Suits, rank: Ranks):
         self.suit = suit
         self.rank = rank
 
