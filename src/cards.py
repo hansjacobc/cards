@@ -1,11 +1,8 @@
-from dataclasses import dataclass
-
-from src.card_enums import Suit, Card
-from src.card_enums import Rank
-
+from src.card_enums import Card
 
 
 class DeckOfCards:
+    """Class to create a deck of cards"""
 
     def __init__(self, num_decks: int = 1, include_jokers: bool = False):
         self.num_decks = num_decks
@@ -13,5 +10,9 @@ class DeckOfCards:
         self.deck = []
 
     def create_deck(self) -> list[Card]:
-
+        a = self.deck
+        print(a)
         return []
+
+    def another_func(self):
+        pass

@@ -6,6 +6,13 @@ name = "pypi"
 [packages]
 
 [dev-packages]
+black = "==24.8.0"
+pylint = "==3.2.7"
+isort = "==5.13.2"
+flake8 = "==7.1.1"
+pre-commit = "==3.8.0"
 
+[scripts]
+lint-fix = "pre-commit run --all-files --hook-stage push -c ./config/.pre-commit-config.yaml"
 [requires]
 python_version = "3.13"
