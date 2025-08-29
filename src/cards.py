@@ -1,6 +1,9 @@
+import itertools
 import random
 
 from src.card_enums import Card, Ranks, Suits
+from src.errors import DeckNotDivisibleException
+from src.player import Player
 
 
 class DeckOfCards:
@@ -36,3 +39,27 @@ class DeckOfCards:
 
     def shuffle_deck(self) -> None:
         random.shuffle(self.deck)
+
+    def deal_out_deck(self, players: list[Player]) -> dict[str, list[Card | Player]]:
+        num_players = len(players)
+        len_deck = len(self.deck)
+        num_left_over = len_deck % num_players
+        left_over = [self.deck.pop(0) for _ in range(num_left_over)]
+
+        if not len(self.deck) % num_players == 0:
+            raise DeckNotDivisibleException(num_players=num_players, len_deck=len(self.deck))
+
+        player_cycle = itertools.cycle(players)
+
+        while self.deck:
+            player = next(player_cycle)
+            card = self.deck.pop(0)
+            player.add_card_to_hand(card)
+
+        dealt_out_hands = {
+            "left_over": left_over,
+            "players": players
+        }
+        
+        return dealt_out_hands
+
