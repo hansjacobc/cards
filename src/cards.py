@@ -41,13 +41,19 @@ class DeckOfCards:
         random.shuffle(self.deck)
 
     def deal_out_deck(self, players: list[Player]) -> dict[str, list[Card | Player]]:
+        """
+        Deals out a deck given players and returns player object with updated hand
+        attribute and also a list of leftover cards.
+        """
         num_players = len(players)
         len_deck = len(self.deck)
         num_left_over = len_deck % num_players
         left_over = [self.deck.pop(0) for _ in range(num_left_over)]
 
         if not len(self.deck) % num_players == 0:
-            raise DeckNotDivisibleException(num_players=num_players, len_deck=len(self.deck))
+            raise DeckNotDivisibleException(
+                num_players=num_players, len_deck=len(self.deck)
+            )
 
         player_cycle = itertools.cycle(players)
 
@@ -56,10 +62,6 @@ class DeckOfCards:
             card = self.deck.pop(0)
             player.add_card_to_hand(card)
 
-        dealt_out_hands = {
-            "left_over": left_over,
-            "players": players
-        }
-        
-        return dealt_out_hands
+        dealt_out_hands = {"left_over": left_over, "players": players}
 
+        return dealt_out_hands

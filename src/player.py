@@ -3,6 +3,7 @@ from src.card_enums import Card
 
 class Player:
     """Class for player data"""
+
     def __init__(self, name: str):
         self.name = name
         self.score = 0
