@@ -4,6 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+fastapi = "==0.116.1"
+uvicorn = "==0.35.0"
 
 [dev-packages]
 pytest = "==8.4.1"
@@ -15,5 +17,7 @@ pre-commit = "==3.8.0"
 
 [scripts]
 lint-fix = "pre-commit run --all-files --hook-stage push -c ./config/.pre-commit-config.yaml"
+app-local = "uvicorn app.main:app"
+
 [requires]
 python_version = "3.13"

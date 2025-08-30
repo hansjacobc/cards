@@ -20,3 +20,4 @@ repos:
     hooks:
       - id: pylint
         args: [--rcfile=config/.pylintrc]
+        additional_dependencies: [fastapi, uvicorn]
