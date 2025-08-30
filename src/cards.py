@@ -40,7 +40,7 @@ class DeckOfCards:
     def shuffle_deck(self) -> None:
         random.shuffle(self.deck)
 
-    def deal_out_deck(self, players: list[Player]) -> dict[str, list[Card | Player]]:
+    def deal_out_deck(self, players: list[Player]) -> list[Card]:
         """
         Deals out a deck given players and returns player object with updated hand
         attribute and also a list of leftover cards.
@@ -62,6 +62,4 @@ class DeckOfCards:
             card = self.deck.pop(0)
             player.add_card_to_hand(card)
 
-        dealt_out_hands = {"left_over": left_over, "players": players}
-
-        return dealt_out_hands
+        return left_over
